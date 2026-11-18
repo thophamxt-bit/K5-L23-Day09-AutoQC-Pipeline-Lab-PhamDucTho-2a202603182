@@ -1,6 +1,6 @@
 # Báo cáo Day 09 — Phạm Đức Thọ-2a202603182
 
-> Xoá mọi `TODO(học viên)` và dòng gợi ý. Mỗi ý trả lời bằng **số lấy từ `submission/reports/`**, kèm mẫu số. Cả báo cáo ~1–2 trang.
+
 
 ## 1. Kết luận trước
 TODO(học viên): pipeline kết luận **Release / Hold / Rework**? 
@@ -48,9 +48,9 @@ Hàng đợi sắp xếp giảm dần theo điểm ưu tiên priority (tính b�
 **Với ngân sách 80 ảnh, người xem được bao nhiêu lỗi ngữ nghĩa?**  
 243 lỗi ngữ nghĩa, xử lý được 187.
 
-TODO(học viên): vì sao `05_review_queue.csv` xếp ảnh đầu hàng như vậy? 
+-vì sao `05_review_queue.csv` xếp ảnh đầu hàng như vậy? 
 Hàng đợi sắp xếp giảm dần theo điểm ưu tiên priority (tính bằng tổng weight × (1 + conf) của các cảnh báo trên ảnh đó, cộng thêm điểm cho các lỗi máy vừa sửa như FIXED_DROP_LINE = 2, FIXED_CLIP_BOX = 1 và NEEDS_LABEL = 10). Nhờ vậy, những ảnh đứng đầu hàng (như img_0160 đạt 35.692, img_0127 đạt 22.753, img_0020 đạt 17.449) là các ảnh tích tụ nhiều nghi vấn ngữ nghĩa có trọng số và độ tự tin cao
-Với ngân sách 80 ảnh, người xem được bao nhiêu lỗi ngữ nghĩa?
+-Với ngân sách 80 ảnh, người xem được bao nhiêu lỗi ngữ nghĩa?
 243 lỗi ngữ nghĩa,xử lý được 187
 
 ## 3. Calibration (2 ngưỡng)
@@ -94,7 +94,8 @@ Cách kiểm: Đánh giá lại model raw trên 96 ảnh test (sau khi loại 4 
 Cách kiểm: Chạy lại pipeline với ngân sách đủ lớn để duyệt hết toàn bộ hàng đợi (đạt Release) rồi train lại clean và so sánh mAP50.
 
 ## 6. Quyết định và ghi chú AI
-TODO(học viên): (a) quyết định cuối; nếu Hold/Rework cần làm gì để thành Release? (b) Dùng AI viết code? Ghi 3 dòng: tóm tắt yêu cầu repo , giải thích cho tôi ý nghĩa các tệp file của các model cần làm, hãy giúp tôi code ra các model giải quyết các vấn đề trên 
- cách bạn kiểm code AI, 1 lần AI sai.
+-(a) quyết định cuối; nếu Hold/Rework cần làm gì để thành Release? (b) Dùng AI viết code? Ghi 3 dòng:
+tóm tắt yêu cầu repo , giải thích cho tôi ý nghĩa các tệp file của các model cần làm, hãy giúp tôi code ra các model giải quyết các vấn đề trên 
+- cách bạn kiểm code AI, 1 lần AI sai.
  Review lại đoạn code,tìm ra lỗi sai theo các trường hợp đặc biệt về các chủ đề tương ứng với chủ đề hiện tại,nếu có bug  đưa ra hướng giải quyết tốt nhất
 *(Thưởng +2, tùy chọn)* CVAT: lọc `width < 20`, ảnh/số box khớp, đối chiếu `BOX_TINY` (xem docs/CVAT_FILTER.md), 1 câu về `can_review`.
