@@ -2,17 +2,17 @@
   "verdict": {
     "decision": "Hold",
     "n_errors": 0,
-    "n_warn_images": 60,
-    "n_images": 205,
-    "warn_ratio": 0.2927,
+    "n_warn_images": 38,
+    "n_images": 203,
+    "warn_ratio": 0.1872,
     "reasons": [
-      "Không còn lỗi bắt buộc, nhưng có 60/205 ảnh (29.27%) còn cảnh báo chưa duyệt >= ngưỡng 10.00% -> Hold."
+      "Không còn lỗi bắt buộc, nhưng có 38/203 ảnh (18.72%) còn cảnh báo chưa duyệt >= ngưỡng 10.00% -> Hold."
     ]
   },
   "reviewed": 80,
   "budget": 80,
-  "seconds": 13.7,
+  "seconds": 27.5,
   "exported": "E:\\New folder (20)\\K5-L23-Day09-AutoQC-Pipeline-Lab-PhamDucTho-2a202603182\\submission\\export\\clean_v1",
-  "config_sha1": "b44ba77a8a036c1cad78e0c28ed1db6ba7404125",
+  "config_sha1": "82cd40be4c2f3860a7165a66dd871b568f45296a",
   "review_sim_sha1": "7988ca22827f780a7043a2300490e679a1697154"
 }

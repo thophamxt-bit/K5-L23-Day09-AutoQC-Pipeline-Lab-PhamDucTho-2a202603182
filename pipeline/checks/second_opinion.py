@@ -40,5 +40,102 @@ from ..model_cache import get_preds  # noqa: F401
 
 
 def run(ds, cfg, preds=None):
-    # TODO
-    raise NotImplementedError("check second_opinion chưa làm")
+    if preds is None:
+        preds = get_preds(ds, cfg, "checker")
+
+    c = cfg["second_opinion"]
+    n_classes = len(ds.classes)
+    issues = []
+
+    for img_p in ds.image_files():
+        stem = img_p.stem
+        if stem not in preds:
+            continue
+        lines = ds.read_label_lines(stem)
+        if lines is None:
+            continue
+        size = ds.image_size(stem)
+        if size is None:
+            continue
+        img_w, img_h = size
+
+        gt_boxes = ds.valid_boxes(stem)
+        raw_preds = preds[stem]
+
+        for p_cls, p_conf, cx, cy, w, h in raw_preds:
+            area_px = (w * img_w) * (h * img_h)
+            if p_conf < c["conf"] or area_px < c["min_area_px"]:
+                continue
+
+            p_box = (cx, cy, w, h)
+            cands = []
+            for gt_cls, gx, gy, gw, gh in gt_boxes:
+                iou = iou_xywh(p_box, (gx, gy, gw, gh))
+                if iou >= c["iou_missing"]:
+                    cands.append((gt_cls, iou))
+
+            if not cands:
+                issues.append(
+                    Issue(
+                        "second_opinion",
+                        WARN,
+                        "POSSIBLE_MISSING",
+                        stem,
+                        "model phát hiện vật nhưng nhãn không có box",
+                        extra={"conf": p_conf},
+                    )
+                )
+                continue
+
+            same_ious = [iou for gt_cls, iou in cands if gt_cls == p_cls]
+            if same_ious:
+                best_same = max(same_ious)
+                if best_same < c["iou_loose"]:
+                    issues.append(
+                        Issue(
+                            "second_opinion",
+                            WARN,
+                            "POSSIBLE_LOOSE_BOX",
+                            stem,
+                            f"box đúng lớp nhưng lệch/lỏng (IoU={best_same:.2f})",
+                            extra={"conf": p_conf, "iou": best_same},
+                        )
+                    )
+                continue
+
+            best_diff = max(iou for _, iou in cands)
+            if best_diff >= c["iou_match"]:
+                issues.append(
+                    Issue(
+                        "second_opinion",
+                        WARN,
+                        "POSSIBLE_WRONG_CLASS",
+                        stem,
+                        f"nghi gán nhầm lớp (IoU={best_diff:.2f})",
+                        extra={"conf": p_conf, "iou": best_diff},
+                    )
+                )
+
+        fp_preds = [p for p in raw_preds if p[1] >= c["fp_conf"]]
+        for line_no, text in lines:
+            try:
+                cls_id, gx, gy, gw, gh = parse_yolo_line(text)
+            except ValueError:
+                continue
+            if cls_id < 0 or cls_id >= n_classes:
+                continue
+            gt_box = (gx, gy, gw, gh)
+            max_iou = max((iou_xywh(gt_box, p[2:]) for p in fp_preds), default=0.0)
+            if max_iou < c["iou_missing"]:
+                issues.append(
+                    Issue(
+                        "second_opinion",
+                        WARN,
+                        "POSSIBLE_FALSE_POS",
+                        stem,
+                        "box nhãn không khớp với dự đoán nào của model",
+                        line=line_no,
+                    )
+                )
+
+    return issues

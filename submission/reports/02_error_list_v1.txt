@@ -1,12 +1,12 @@
 # Danh sách lỗi — TRƯỚC khi sửa (v1)
-ảnh đã quét: 205
+ảnh đã quét: 203
 
 class_names -> 2 dòng
-duplicates -> 14 dòng
+duplicates -> 16 dòng
 images -> 5 dòng
 label_format -> 37 dòng
 missing_labels -> 18 dòng
-second_opinion -> 248 dòng
+second_opinion -> 128 dòng
 stats -> 4 dòng
 
 [ERROR] BAD_CLASS_ID         img_0020.txt:3  id lớp 93 ngoài 0..3
@@ -54,7 +54,9 @@ stats -> 4 dòng
 [ERROR] DUP_IMAGE_EXACT      img_0222  trùng từng byte với img_0151
 [ERROR] DUP_IMAGE_NEAR       img_0076  trùng gần đúng với img_0042 (phash 0)
 [ERROR] DUP_IMAGE_NEAR       img_0143  trùng gần đúng với img_0037 (phash 0)
+[ERROR] DUP_IMAGE_NEAR       img_0223  trùng gần đúng với img_0077 (phash 6)
 [ERROR] LEAK_TEST            img_0049  trùng ảnh kho test/val: test/test_033.jpg
+[ERROR] LEAK_TEST            img_0101  trùng ảnh kho test/val: test/test_039.jpg
 [ERROR] LEAK_TEST            img_0167  trùng ảnh kho test/val: test/test_044.jpg
 [ERROR] LEAK_TEST            img_0174  trùng ảnh kho test/val: test/test_085.jpg
 [ERROR] LEAK_TEST            img_0221  trùng ảnh kho test/val: test/test_009.jpg
@@ -119,32 +121,19 @@ stats -> 4 dòng
 [WARN ] POSSIBLE_FALSE_POS   img_0204.txt:1  box nhãn không khớp với dự đoán nào của model
 [WARN ] POSSIBLE_FALSE_POS   img_0206.txt:1  box nhãn không khớp với dự đoán nào của model
 [WARN ] POSSIBLE_LOOSE_BOX   img_0015  box đúng lớp nhưng lệch/lỏng (IoU=0.34)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0015  box đúng lớp nhưng lệch/lỏng (IoU=0.35)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0018  box đúng lớp nhưng lệch/lỏng (IoU=0.45)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0023  box đúng lớp nhưng lệch/lỏng (IoU=0.40)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0030  box đúng lớp nhưng lệch/lỏng (IoU=0.34)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0036  box đúng lớp nhưng lệch/lỏng (IoU=0.43)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0038  box đúng lớp nhưng lệch/lỏng (IoU=0.40)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0045  box đúng lớp nhưng lệch/lỏng (IoU=0.33)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0045  box đúng lớp nhưng lệch/lỏng (IoU=0.45)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0046  box đúng lớp nhưng lệch/lỏng (IoU=0.38)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0051  box đúng lớp nhưng lệch/lỏng (IoU=0.30)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0054  box đúng lớp nhưng lệch/lỏng (IoU=0.38)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0058  box đúng lớp nhưng lệch/lỏng (IoU=0.44)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0062  box đúng lớp nhưng lệch/lỏng (IoU=0.47)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0062  box đúng lớp nhưng lệch/lỏng (IoU=0.35)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0063  box đúng lớp nhưng lệch/lỏng (IoU=0.41)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0064  box đúng lớp nhưng lệch/lỏng (IoU=0.45)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0068  box đúng lớp nhưng lệch/lỏng (IoU=0.42)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0069  box đúng lớp nhưng lệch/lỏng (IoU=0.39)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0075  box đúng lớp nhưng lệch/lỏng (IoU=0.32)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0077  box đúng lớp nhưng lệch/lỏng (IoU=0.40)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0081  box đúng lớp nhưng lệch/lỏng (IoU=0.48)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0082  box đúng lớp nhưng lệch/lỏng (IoU=0.48)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0090  box đúng lớp nhưng lệch/lỏng (IoU=0.46)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0091  box đúng lớp nhưng lệch/lỏng (IoU=0.41)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0094  box đúng lớp nhưng lệch/lỏng (IoU=0.39)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0094  box đúng lớp nhưng lệch/lỏng (IoU=0.32)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0096  box đúng lớp nhưng lệch/lỏng (IoU=0.47)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0119  box đúng lớp nhưng lệch/lỏng (IoU=0.41)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0125  box đúng lớp nhưng lệch/lỏng (IoU=0.42)
@@ -155,166 +144,63 @@ stats -> 4 dòng
 [WARN ] POSSIBLE_LOOSE_BOX   img_0171  box đúng lớp nhưng lệch/lỏng (IoU=0.43)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0171  box đúng lớp nhưng lệch/lỏng (IoU=0.33)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0175  box đúng lớp nhưng lệch/lỏng (IoU=0.42)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0175  box đúng lớp nhưng lệch/lỏng (IoU=0.43)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0179  box đúng lớp nhưng lệch/lỏng (IoU=0.37)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0188  box đúng lớp nhưng lệch/lỏng (IoU=0.50)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0200  box đúng lớp nhưng lệch/lỏng (IoU=0.43)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0210  box đúng lớp nhưng lệch/lỏng (IoU=0.48)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0217  box đúng lớp nhưng lệch/lỏng (IoU=0.34)
 [WARN ] POSSIBLE_LOOSE_BOX   img_0217  box đúng lớp nhưng lệch/lỏng (IoU=0.36)
-[WARN ] POSSIBLE_LOOSE_BOX   img_0223  box đúng lớp nhưng lệch/lỏng (IoU=0.46)
-[WARN ] POSSIBLE_MISSING     img_0001  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0001  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0004  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0004  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0005  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0012  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0014  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0019  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0020  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0020  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0020  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0021  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0022  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0024  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0027  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0028  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0030  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0030  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0032  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0032  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0032  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0032  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0037  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0045  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0047  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0050  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0051  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0057  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0058  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0058  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0058  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0058  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0058  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0064  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0065  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0066  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0066  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0067  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0067  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0067  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0067  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0068  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0073  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0078  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0084  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0084  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0084  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0086  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0087  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0091  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0092  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0093  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0094  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0095  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0096  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0099  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0099  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0099  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0100  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0100  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0103  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0104  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0106  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0108  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0108  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0114  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0114  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0116  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0116  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0117  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0119  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0119  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0119  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0121  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0124  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0124  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0125  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0125  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0127  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0127  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0127  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0127  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0127  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0127  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0131  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0131  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0133  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0133  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0134  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0134  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0137  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0138  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0142  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0144  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0145  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0147  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0151  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0151  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0151  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0151  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0157  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0159  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0160  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0160  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0160  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0160  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0160  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0160  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0160  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0160  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0160  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0160  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0160  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0163  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0164  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0165  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0165  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0178  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0182  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0184  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0185  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0187  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0187  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0188  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0191  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0194  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0195  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0195  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0195  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0195  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0195  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0199  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0199  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0200  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0204  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0205  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0210  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0210  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0210  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0211  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0211  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0215  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0215  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0218  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_MISSING     img_0220  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0220  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0220  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0220  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0220  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0224  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0224  model phát hiện vật nhưng nhãn không có box
-[WARN ] POSSIBLE_MISSING     img_0224  model phát hiện vật nhưng nhãn không có box
 [WARN ] POSSIBLE_WRONG_CLASS img_0019  nghi gán nhầm lớp (IoU=0.99)
 [WARN ] POSSIBLE_WRONG_CLASS img_0020  nghi gán nhầm lớp (IoU=0.94)
 [WARN ] POSSIBLE_WRONG_CLASS img_0021  nghi gán nhầm lớp (IoU=0.97)
@@ -324,13 +210,9 @@ stats -> 4 dòng
 [WARN ] POSSIBLE_WRONG_CLASS img_0071  nghi gán nhầm lớp (IoU=0.99)
 [WARN ] POSSIBLE_WRONG_CLASS img_0075  nghi gán nhầm lớp (IoU=0.97)
 [WARN ] POSSIBLE_WRONG_CLASS img_0083  nghi gán nhầm lớp (IoU=0.95)
-[WARN ] POSSIBLE_WRONG_CLASS img_0092  nghi gán nhầm lớp (IoU=0.94)
-[WARN ] POSSIBLE_WRONG_CLASS img_0101  nghi gán nhầm lớp (IoU=0.58)
 [WARN ] POSSIBLE_WRONG_CLASS img_0112  nghi gán nhầm lớp (IoU=0.93)
 [WARN ] POSSIBLE_WRONG_CLASS img_0124  nghi gán nhầm lớp (IoU=0.97)
-[WARN ] POSSIBLE_WRONG_CLASS img_0124  nghi gán nhầm lớp (IoU=0.98)
 [WARN ] POSSIBLE_WRONG_CLASS img_0160  nghi gán nhầm lớp (IoU=0.95)
-[WARN ] POSSIBLE_WRONG_CLASS img_0180  nghi gán nhầm lớp (IoU=0.71)
 [WARN ] POSSIBLE_WRONG_CLASS img_0183  nghi gán nhầm lớp (IoU=0.94)
 [WARN ] POSSIBLE_WRONG_CLASS img_0185  nghi gán nhầm lớp (IoU=0.90)
 [WARN ] POSSIBLE_WRONG_CLASS img_0191  nghi gán nhầm lớp (IoU=0.95)
@@ -348,14 +230,14 @@ error BOX_ZERO               4
 error CORRUPT_IMAGE          2
 error DUP_BOX                7
 error DUP_IMAGE_EXACT        8
-error DUP_IMAGE_NEAR         2
-error LEAK_TEST              4
+error DUP_IMAGE_NEAR         3
+error LEAK_TEST              5
 error MISSING_LABEL_FILE     6
 warn  BOX_HUGE               3
 warn  BOX_TINY               6
 warn  CLASS_RARE             4
 warn  EMPTY_LABEL            12
 warn  POSSIBLE_FALSE_POS     29
-warn  POSSIBLE_LOOSE_BOX     45
-warn  POSSIBLE_MISSING       152
-warn  POSSIBLE_WRONG_CLASS   22
+warn  POSSIBLE_LOOSE_BOX     28
+warn  POSSIBLE_MISSING       53
+warn  POSSIBLE_WRONG_CLASS   18
