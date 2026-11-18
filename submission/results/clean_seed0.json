@@ -4,20 +4,20 @@
   "epochs": 20,
   "model": "yolo26n.pt",
   "device": "0",
-  "map50": 0.6958,
-  "map50_95": 0.4943,
-  "precision": 0.7148,
-  "recall": 0.6307,
+  "map50": 0.6813,
+  "map50_95": 0.4766,
+  "precision": 0.831,
+  "recall": 0.5618,
   "ap50_per_class": {
-    "car": 0.7504,
-    "person": 0.8269,
-    "truck": 0.5452,
-    "bus": 0.6607
+    "car": 0.7097,
+    "person": 0.8341,
+    "truck": 0.4841,
+    "bus": 0.6972
   },
-  "manifest_sha1": "1612880e2ac956b853aa056a200980a3e6c63f83",
-  "config_sha1": "b44ba77a8a036c1cad78e0c28ed1db6ba7404125",
+  "manifest_sha1": "003b89b1dc7d81749a1c9e1ecac9a1a10988f871",
+  "config_sha1": "82cd40be4c2f3860a7165a66dd871b568f45296a",
   "batch": 16,
   "imgsz": 640,
-  "train_images": 205,
-  "seconds": 97.4
+  "train_images": 203,
+  "seconds": 96.0
 }
