@@ -19,26 +19,32 @@ Bao nhiêu ảnh vào, bao nhiêu ảnh ra dataset? Lý do chính (1–3 câu).
 Lấy từ `02_error_list_v1` (gom theo mã lỗi). Cột "ai sửa": **máy** (autofix) hay **người** (hàng đợi); chỉ ghi những mã có mặt trong lô của bạn.
 
 | Mã lỗi | Số ảnh/dòng | Ai sửa (máy/người) | Vì sao |
-||---:|---|---|
-|  BAD_CLASS_ID  | 6| máy| ID lớp nằm ngoài 0..3, vì không tự đoán được lớp đúng|
-| BAD_CLASSNAME |2| máy|Sửa tên lớp trong data.yaml|
-|BAD_FORMAT |3| máy|Dòng thiếu cột gây crash khi đọc nhãn|
-|BAD_SIZE   | 3| máy|Ảnh có cạnh ngắn < 250px không đạt chuẩn đầu vào|
-|BOX_OUT_OF_IMAGE|8|máy|Boxtràn viền [0, 1], máy cắt an toàn về đúng biên ảnh|
-|BOX_ZERO | 4|máy|Box có w <= 0 hoặc h <= 0 (không có diện tích),                            
-|DUP_BOX||  7|máy|Hai box cùng lớp trùng lặp gần như hoàn toàn IoU > 0.9|
-| DUP_IMAGE_EXACT|  8| máy|Ảnh trùng từng byte , máy xóa bản dư để tránh lặp dữ liệu train.|
-| DUP_IMAGE_NEAR | 2|máy|Ảnh trùng gần đúng theo pHash, máy xóa bản dư.
-|LEAK_TEST|4|máy|Ảnh bị rò rỉ từ tập test/val, máy bắt buộc xóa để đảm bảo đánh giá công bằng|
-|MISSING_LABEL_FILE|6|người|Ảnh chưa có file .txt, máy không thể tự bịa nhãn|
-|BOX_HUGE |3|người|Cảnh báo box chiếm > 95%
-|BOX_TINY |6|người|Cảnh báo box cạnh ngắn < 12px, cần người phân biệt vật ở xa hay nhiễu gán nhãn.|
-|CLASS_RARE| | 4|máy|Cảnh báo thống kê cho các ID lớp lạ|
-|EMPTY_LABEL|  12|người|cần người xác nhận là ảnh nền sạch hay người gán bỏ sót|
-|POSSIBLE_FALSE_POS|29|người|cần người xác nhận là ảnh nền người gán bỏ sót|
-|POSSIBLE_LOOSE_BOX |45|người|Box đúng lớp nhưng lệch/lỏng so với model, cần người căn chỉnh lại cho khít vật.|
-|POSSIBLE_MISSING |152|người|Model phát hiện vật nhưng nhãn không có, model có thể đoán nhầm nên người phải xác nhận|
-|POSSIBLE_WRONG_CLASS | 22|người|Bất đồng lớp giữa nhãn và model, cần người đọc ngữ nghĩa ảnh để chốt lớp đúng.|
+|---|---:|---|---|
+| BAD_CLASS_ID | 6 | máy | ID lớp nằm ngoài 0..3, vì không tự đoán được lớp đúng |
+| BAD_CLASSNAME | 2 | máy | Sửa tên lớp trong data.yaml |
+| BAD_FORMAT | 3 | máy | Dòng thiếu cột gây crash khi đọc nhãn |
+| BAD_SIZE | 3 | máy | Ảnh có cạnh ngắn < 250px không đạt chuẩn đầu vào |
+| BOX_OUT_OF_IMAGE | 8 | máy | Box tràn viền [0, 1], máy cắt an toàn về đúng biên ảnh |
+| BOX_ZERO | 4 | máy | Box có w <= 0 hoặc h <= 0 (không có diện tích) |
+| DUP_BOX | 7 | máy | Hai box cùng lớp trùng lặp gần như hoàn toàn IoU > 0.9 |
+| DUP_IMAGE_EXACT | 8 | máy | Ảnh trùng từng byte, máy xóa bản dư để tránh lặp dữ liệu train. |
+| DUP_IMAGE_NEAR | 2 | máy | Ảnh trùng gần đúng theo pHash, máy xóa bản dư. |
+| LEAK_TEST | 4 | máy | Ảnh bị rò rỉ từ tập test/val, máy bắt buộc xóa để đảm bảo đánh giá công bằng |
+| MISSING_LABEL_FILE | 6 | người | Ảnh chưa có file .txt, máy không thể tự bịa nhãn |
+| BOX_HUGE | 3 | người | Cảnh báo box chiếm > 95% |
+| BOX_TINY | 6 | người | Cảnh báo box cạnh ngắn < 12px, cần người phân biệt vật ở xa hay nhiễu gán nhãn. |
+| CLASS_RARE | 4 | máy | Cảnh báo thống kê cho các ID lớp lạ |
+| EMPTY_LABEL | 12 | người | cần người xác nhận là ảnh nền sạch hay người gán bỏ sót |
+| POSSIBLE_FALSE_POS | 29 | người | cần người xác nhận là ảnh nền người gán bỏ sót |
+| POSSIBLE_LOOSE_BOX | 45 | người | Box đúng lớp nhưng lệch/lỏng so với model, cần người căn chỉnh lại cho khít vật. |
+| POSSIBLE_MISSING | 152 | người | Model phát hiện vật nhưng nhãn không có, model có thể đoán nhầm nên người phải xác nhận |
+| POSSIBLE_WRONG_CLASS | 22 | người | Bất đồng lớp giữa nhãn và model, cần người đọc ngữ nghĩa ảnh để chốt lớp đúng. |
+
+**Vì sao `05_review_queue.csv` xếp ảnh đầu hàng như vậy?**  
+Hàng đợi sắp xếp giảm dần theo điểm ưu tiên priority (tính bằng tổng weight × (1 + conf) của các cảnh báo trên ảnh đó, cộng thêm điểm cho các lỗi máy vừa sửa như FIXED_DROP_LINE = 2, FIXED_CLIP_BOX = 1 và NEEDS_LABEL = 10). Nhờ vậy, những ảnh đứng đầu hàng (như img_0160 đạt 35.692, img_0127 đạt 22.753, img_0020 đạt 17.449) là các ảnh tích tụ nhiều nghi vấn ngữ nghĩa có trọng số và độ tự tin cao.
+
+**Với ngân sách 80 ảnh, người xem được bao nhiêu lỗi ngữ nghĩa?**  
+243 lỗi ngữ nghĩa, xử lý được 187.
 
 TODO(học viên): vì sao `05_review_queue.csv` xếp ảnh đầu hàng như vậy? 
 Hàng đợi sắp xếp giảm dần theo điểm ưu tiên priority (tính bằng tổng weight × (1 + conf) của các cảnh báo trên ảnh đó, cộng thêm điểm cho các lỗi máy vừa sửa như FIXED_DROP_LINE = 2, FIXED_CLIP_BOX = 1 và NEEDS_LABEL = 10). Nhờ vậy, những ảnh đứng đầu hàng (như img_0160 đạt 35.692, img_0127 đạt 22.753, img_0020 đạt 17.449) là các ảnh tích tụ nhiều nghi vấn ngữ nghĩa có trọng số và độ tự tin cao
