@@ -9,11 +9,11 @@ HOLD — Không còn lỗi bắt buộc, nhưng có 60/205 ảnh (29.27%) còn c
 
 Bao nhiêu ảnh vào, bao nhiêu ảnh ra dataset? Lý do chính (1–3 câu).
 224 ảnh vào, 205 ảnh ra dataset. Bởi vì có :
-rror BAD_SIZE               3: cạnh ngắn là" img_0107,img_0113, img_0122"
-error CORRUPT_IMAGE          2: không mở được là" img_0122,img_0136 "
-error DUP_IMAGE_EXACT        8: trùng byte với các ảnh như "img_0012,img_0012,..."
-error DUP_IMAGE_NEAR         2:trùng gần đúng với các ảnh"img_0042,img_0037"
-error LEAK_TEST              4:rùng ảnh kho test/val là"test_033.jpg,test_044.jpg,test_085.jpg,test_009.jpg"
+|error BAD_SIZE     |          3: cạnh ngắn là" img_0107,img_0113, img_0122"|
+|error CORRUPT_IMAGE|          2: không mở được là" img_0122,img_0136 "|
+|error DUP_IMAGE_EXACT |       8: trùng byte với các ảnh như "img_0012,img_0012,..."|
+|error DUP_IMAGE_NEAR   |      2:trùng gần đúng với các ảnh"img_0042,img_0037"|
+|error LEAK_TEST     |         4:rùng ảnh kho test/val là"test_033.jpg,test_044.jpg,test_085.jpg,test_009.jpg"|
 
 ## 2. Lỗi và phân việc
 Lấy từ `02_error_list_v1` (gom theo mã lỗi). Cột "ai sửa": **máy** (autofix) hay **người** (hàng đợi); chỉ ghi những mã có mặt trong lô của bạn.
